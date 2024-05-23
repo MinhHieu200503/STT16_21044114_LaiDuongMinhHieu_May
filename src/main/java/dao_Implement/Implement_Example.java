@@ -15,6 +15,67 @@ public class Implement_Example implements dao.Interface_Example {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 
+// 	@Override
+// 	public List<Item> listItems(String supplierName) {
+// 		String query = "select i.id from items i \r\n"
+// 				+ "inner join items_ingredients ii on i.id = ii.item_id\r\n"
+// 				+ "inner join ingredients ig on ii.ingredient_id = ig.ingredient_id\r\n"
+// 				+ "where on_special = 1 and supplier_name like ?";
+// 		List<?> ls = em.createNativeQuery(query).
+// 				setParameter(1, "%" + supplierName + "%")
+// 				.getResultList();
+		
+// 		List<Item> items = new ArrayList<>();
+		
+// 		ls.stream().forEach(
+// 				o -> {
+// 					String id = (String) o;
+// 				    Item i;
+// 					if (id.startsWith("B")) {
+// 						i = em.find(Beverage.class, id);
+// 					} else {
+// 						i = em.find(Food.class, id);
+// 					}
+// 					items.add(i);   
+// 				}
+// 				);
+		
+// 		return items;
+// 	}
+	
+// 	public static void main(String[] args) {
+// //		FoodImpl foodImpl = new FoodImpl();
+// //		List<Item> items = new ArrayList<>();
+// //		items = foodImpl.listItems("a");
+// //		items.stream().forEach(System.out::println);
+		
+// 		Map<Food, Double> map = new FoodImpl().listFoodAndCost();
+// 		map.forEach((k, v) -> System.out.println(k.getId() + " " + v));
+		
+		
+// 	}
+
+// 	@Override
+// 	public Map<Food, Double> listFoodAndCost() {
+// 		String query = "select i.id, sum(quantity*ig.price) + (serving_time+preparation_time)*0.2 as n from foods f\r\n"
+// 				+ "	inner join items i on f.id = i.id\r\n"
+// 				+ "	inner join items_ingredients ii on i.id = ii.item_id\r\n"
+// 				+ "	inner join ingredients ig on ii.ingredient_id = ig.ingredient_id\r\n"
+// 				+ "	group by i.id, serving_time, preparation_time"
+// 				+ " ORDER BY n desc";
+// 		List<?> ls = em.createNativeQuery(query).getResultList();
+		
+// 		return ls.stream()
+// 			.map(o -> (Object[]) o)
+// 			.map(a -> {
+// 				String id = (String) a[0];
+// 				Double cost = (Double) a[1];
+// 				Food f = em.find(Food.class, id);
+// 				return Map.entry(f, cost);
+// 			}).collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		
+// 	}
+
 	@Override
 	public List<Book> listRatedBooks(String author, int rating) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
